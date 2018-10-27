@@ -4,6 +4,9 @@ import Foundation.NSFileManager
 
 let server = HttpServer()
 server["/files/:path"] = directoryBrowser(FileManager().currentDirectoryPath)
+server["/"] = { request in
+    return .movedPermanently("files/")
+}
 
 let semaphore = DispatchSemaphore(value: 0)
 do {
