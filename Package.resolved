@@ -9,6 +9,15 @@
           "revision": "f76bf391e127333a371e45c4e75f52f71cfd144f",
           "version": "1.4.5"
         }
+      },
+      {
+        "package": "SwiftIP",
+        "repositoryURL": "git@github.com:Samasaur1/SwiftIP.git",
+        "state": {
+          "branch": null,
+          "revision": "631f9240cbaebeb16d563cf86d8f7b0a599b1aa9",
+          "version": "1.0.1"
+        }
       }
     ]
   },
