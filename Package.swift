@@ -9,10 +9,10 @@ let package = Package(
         .executable(name: "server", targets: ["SimpleSwiftServer"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/httpswift/swifter.git", from: "1.4.5"),
         .package(url: "git@github.com:Samasaur1/SwiftIP.git", from: "1.0.0"),
+        .package(url: "https://github.com/httpswift/swifter", .exact("1.4.5")),
     ],
     targets: [
-        .target(name: "SimpleSwiftServer", dependencies: ["Swifter", "SwiftIP"]),
+        .target(name: "SimpleSwiftServer", dependencies: ["SwiftIP", "Swifter"]),
     ]
 )

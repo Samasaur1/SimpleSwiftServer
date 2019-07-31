@@ -12,6 +12,11 @@ extension String {
         return URL(fileURLWithPath: self).lastPathComponent
     }
 }
+extension HttpResponse {
+    static func movedTemporarily(_ location: String) -> HttpResponse {
+        return .raw(307, "Moved Temporarily", ["Location": location], nil)
+    }
+}
 
 let args = Array(CommandLine.arguments.dropFirst())
 var port: UInt16 = 1234
@@ -59,7 +64,7 @@ switch mode {
 case .directoryBrowser:
     server["/files/:path"] = directoryBrowser(path)
     server["/"] = { _ in
-        return .ok(.html(#"<html><head><script>window.location = "files/"</script></head></html>"#))
+        return .movedTemporarily("files/")
     }
 case .fileDownload:
     server["/file/"] = { _ in
@@ -72,7 +77,7 @@ case .fileDownload:
         return .notFound
     }
     server["/"] = { _ in
-        return .ok(.html(#"<html><head><script>window.location = "file/"</script></head></html>"#))
+        return .movedTemporarily("file/")
     }
 }
 
