@@ -12,11 +12,11 @@
       },
       {
         "package": "SwiftIP",
-        "repositoryURL": "git@github.com:Samasaur1/SwiftIP.git",
+        "repositoryURL": "https://github.com/Samasaur1/SwiftIP",
         "state": {
           "branch": null,
-          "revision": "b0e2a5af58dc65c10c136fbd68c055a0122701a1",
-          "version": "1.1.0"
+          "revision": "b94c33e4d7e88caf0ea0cd684d6ca1cd1a278f38",
+          "version": "1.1.1"
         }
       }
     ]
