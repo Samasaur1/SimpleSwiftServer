@@ -88,7 +88,7 @@ do {
     try server.start(port, forceIPv4: true)
     print("Server has started on port \(try server.port()). Try to connect now...")
     print()
-    print("Others can do so by going to \"\(try IP.local()):\(try server.port())\" in a browser")
+    print("Others can do so by going to \"\(IP.local() ?? "localhost"):\(try server.port())\" in a browser")
     semaphore.wait()
 } catch {
     print("Server start error: \(error)")
