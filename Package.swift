@@ -10,9 +10,10 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/Samasaur1/SwiftIP", from: "2.0.0"),
+        .package(url: "https://github.com/apple/swift-argument-parser.git", from: "0.2.0"),
         .package(url: "https://github.com/httpswift/swifter", .exact("1.4.5")),
     ],
     targets: [
-        .target(name: "SimpleSwiftServer", dependencies: ["SwiftIP", "Swifter"]),
+        .target(name: "SimpleSwiftServer", dependencies: ["ArgumentParser", "SwiftIP", "Swifter"]),
     ]
 )
