@@ -19,6 +19,8 @@ struct Server: ParsableCommand {
     enum Mode: String, EnumerableFlag {
         case directoryBrowser = "browse"
         case fileDownload = "file"
+        case webServer = "webserver"
+        case HTMLFile = "html"
 
         static func name(for value: Server.Mode) -> NameSpecification {
             return .customLong(value.rawValue)
@@ -50,6 +52,16 @@ struct Server: ParsableCommand {
             }
             server["/"] = { _ in
                 return .movedTemporarily("file/")
+            }
+        case .webServer:
+            server["/web/:path"] = shareFilesFromDirectory(path)
+            server["/"] = { _ in
+                return .movedTemporarily("web/")
+            }
+        case .HTMLFile:
+            server["/page/"] = shareFile(path)
+            server["/"] = { _ in
+                return .movedTemporarily("page/")
             }
         }
 
