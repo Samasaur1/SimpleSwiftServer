@@ -16,6 +16,16 @@ extension HttpResponse {
 }
 
 struct Server: ParsableCommand {
+    static var configuration = CommandConfiguration(
+        commandName: "server",
+        abstract: "Host a little server.",
+        discussion: "This command lets you host multiple different types of servers on your local machine, accessible to anyone on the network.",
+        version: "4.1.0",
+        shouldDisplay: true,
+        subcommands: [],
+        defaultSubcommand: nil,
+        helpNames: [.short, .long]
+    )
     enum Mode: String, EnumerableFlag {
         case directoryBrowser = "browse"
         case fileDownload = "file"
