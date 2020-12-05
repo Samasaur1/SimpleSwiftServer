@@ -2,7 +2,7 @@ from subprocess import run
 import subprocess
 from os import environ, remove, chdir
 
-input("Make sure you have commited and tagged the latest version.\nPress any key to continue, or Ctrl-C to stop")
+input("Make sure you have commited and tagged the latest version.\nAlso, check that you bumped the version in the CommandConfiguration.\nPress any key to continue, or Ctrl-C to stop")
 
 tag = run(["git", "tag", "--contains", "HEAD"], stdout=subprocess.PIPE).stdout.decode('utf-8').split("\n")[0]
 run(["git", "push"])
