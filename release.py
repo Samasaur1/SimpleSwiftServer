@@ -16,6 +16,10 @@ with open("Formula/simpleswiftserver.rb") as file:
 output = original.copy()
 
 remove("Formula/simpleswiftserver.rb")
+try:
+    remove(f"~/Library/Caches/Homebrew/simpleswiftserver--{tag[1:]}.tag.gz")
+except OSError:
+    pass
 run(["brew", "create", f"https://github.com/Samasaur1/SimpleSwiftServer/archive/{tag}.tar.gz", "--tap", "Samasaur1/core"])
 
 with open("Formula/simpleswiftserver.rb") as file:
