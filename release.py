@@ -21,6 +21,8 @@ run(["brew", "create", f"https://github.com/Samasaur1/SimpleSwiftServer/archive/
 with open("Formula/simpleswiftserver.rb") as file:
     data = list(file.readlines()[3:])
 
+output[1] = data[1]
+output[2] = data[2]
 output[3] = data[3]
 output[4] = data[4]
 output[5] = f'  version "{tag[1:]}"\n'
