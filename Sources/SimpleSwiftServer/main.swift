@@ -38,8 +38,9 @@ struct Server: ParsableCommand {
     }
 
     @Option(name: .long, help: "The port for the server to run on") var port: UInt16 = 1234
-    @Flag(wrappedValue: .directoryBrowser, help: "The server mode") var mode: Mode
+    @Flag(help: "The server mode") var mode: Mode = .directoryBrowser
     @Argument(help: "The path to the file/directory") var path: String = "."
+    @Flag(name: .long, help: "Whether or not to log incoming requests") var debug = false
 
     func run() throws {
         let server = HttpServer()
@@ -72,6 +73,13 @@ struct Server: ParsableCommand {
             server["/page/"] = shareFile(path)
             server["/"] = { _ in
                 return .movedTemporarily("page/")
+            }
+        }
+
+        if debug {
+            server.middleware.append { req in
+                print("\(req.method) request from \(req.address ?? "unknown address") to \(req.path)")
+                return nil
             }
         }
 

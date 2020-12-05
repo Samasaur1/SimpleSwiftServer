@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/apple/swift-argument-parser.git",
         "state": {
           "branch": null,
-          "revision": "eb51f949cdd0c9d88abba9ce79d37eb7ea1231d0",
-          "version": "0.2.0"
+          "revision": "92646c0cdbaca076c8d3d0207891785b3379cbff",
+          "version": "0.3.1"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/Samasaur1/SwiftIP",
         "state": {
           "branch": null,
-          "revision": "f42abe09b9d35377092071cc64e5a11621aa0a64",
-          "version": "2.0.0"
+          "revision": "e1e8a43bd3020f1002c2680ae91056e6d81b647e",
+          "version": "2.2.0"
         }
       }
     ]
