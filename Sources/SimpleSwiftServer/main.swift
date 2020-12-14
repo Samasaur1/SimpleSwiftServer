@@ -20,7 +20,7 @@ struct Server: ParsableCommand {
         commandName: "server",
         abstract: "Host a little server.",
         discussion: "This command lets you host multiple different types of servers on your local machine, accessible to anyone on the network.",
-        version: "4.2.0",
+        version: "4.3.0",
         shouldDisplay: true,
         subcommands: [],
         defaultSubcommand: nil,
