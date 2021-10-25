@@ -20,7 +20,7 @@ struct Server: ParsableCommand {
         commandName: "server",
         abstract: "Host a little server.",
         discussion: "This command lets you host multiple different types of servers on your local machine, accessible to anyone on the network.",
-        version: "4.3.0",
+        version: "4.3.1",
         shouldDisplay: true,
         subcommands: [],
         defaultSubcommand: nil,
@@ -65,7 +65,13 @@ struct Server: ParsableCommand {
                 return .movedTemporarily("file/")
             }
         case .webServer:
-            server["/web/:path"] = shareFilesFromDirectory(path)
+            server["/web/:path"] = { r in
+                guard let f = r.params.first else {
+                    return .notFound
+                }
+                r.params[f.key] = f.value.removingPercentEncoding
+                return shareFilesFromDirectory(path)(r)
+            }
             server["/"] = { _ in
                 return .movedTemporarily("web/")
             }
