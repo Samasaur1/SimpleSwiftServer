@@ -65,7 +65,13 @@ struct Server: ParsableCommand {
                 return .movedTemporarily("file/")
             }
         case .webServer:
-            server["/web/:path"] = shareFilesFromDirectory(path)
+            server["/web/:path"] = { r in
+                guard let f = r.params.first else {
+                    return .notFound
+                }
+                r.params[f.key] = f.value.removingPercentEncoding
+                return shareFilesFromDirectory(path)(r)
+            }
             server["/"] = { _ in
                 return .movedTemporarily("web/")
             }
