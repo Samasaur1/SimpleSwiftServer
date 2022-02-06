@@ -1,6 +1,6 @@
 import Swifter
 import Dispatch
-import Foundation.NSFileManager
+import Foundation
 import SwiftIP
 import ArgumentParser
 
