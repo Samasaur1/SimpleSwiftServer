@@ -1,0 +1,23 @@
+name: Push (non-master)
+
+on:
+  push:
+    branches-ignore:
+      - master
+
+jobs:
+  test:
+    name: Test Swift ${{ matrix.swift }}.x on ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-10.15, macos-latest, ubuntu-18.04, ubuntu-latest]
+        swift: ["4.2", "5.0", "5.1", "5.2", "5.3", "5.4", "5.5"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: fwal/setup-swift@v1
+        with:
+          swift-version: ${{ matrix.swift }}
+      - run: swift --version
+      - run: swift build
