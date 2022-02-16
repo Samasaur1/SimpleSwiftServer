@@ -20,10 +20,4 @@ jobs:
         with:
           swift-version: ${{ matrix.swift }}
       - run: swift --version
-      - name: Patch Swifter
-        run: |
-          swift package edit Swifter
-          cd Packages/Swifter
-          git apply ../../swifter.patch
-          cd ../..
       - run: swift build

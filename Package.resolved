@@ -12,11 +12,11 @@
       },
       {
         "package": "Swifter",
-        "repositoryURL": "https://github.com/httpswift/swifter",
+        "repositoryURL": "https://github.com/Samasaur1/swifter",
         "state": {
-          "branch": null,
-          "revision": "f76bf391e127333a371e45c4e75f52f71cfd144f",
-          "version": "1.4.5"
+          "branch": "simpleswiftserver-version",
+          "revision": "0b562dddf2654efa50d42a99923e919202763183",
+          "version": null
         }
       },
       {
