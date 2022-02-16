@@ -23,9 +23,9 @@
         "package": "SwiftIP",
         "repositoryURL": "https://github.com/Samasaur1/SwiftIP",
         "state": {
-          "branch": "fix-linux",
-          "revision": "0fb20b38f3edb9f77ce31c76ba3ba7c112eed08c",
-          "version": null
+          "branch": null,
+          "revision": "a10b6ee21d2f9bdf3c992211905c6b2f67eddee6",
+          "version": "2.2.1"
         }
       }
     ]
