@@ -40,7 +40,7 @@ jobs:
             swift: "5.0"
           - os: ubuntu-18.04
             swift: "5.1"
-          - os: ubuntu-18.latest
+          - os: ubuntu-latest
             swift: "4.2"
           - os: ubuntu-latest
             swift: "5.0"
