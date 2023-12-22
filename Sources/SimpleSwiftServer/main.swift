@@ -3,6 +3,11 @@ import Dispatch
 import Foundation.NSFileManager
 import SwiftIP
 import ArgumentParser
+import SwiftyBeaver
+
+let log = SwiftyBeaver.self
+let console = ConsoleDestination()
+log.addDestination(console)
 
 private let sensitiveFilePatterns: [String] = ["*.key", "id_rsa", "*.env", "*.pem", "*.ppk"]
 
@@ -74,18 +79,20 @@ struct Server: ParsableCommand {
     private func customDirectoryBrowser(basePath: String, originalDirectoryBrowser: @escaping (String) -> ((HttpRequest) -> HttpResponse)) -> ((HttpRequest) -> HttpResponse) {
         return { request in
             let requestedPath = decodeAndCleanPath(request.path, basePath: "/files/").trimmingCharacters(in: .whitespaces)
+            log.info("Handling request for path: \(requestedPath)")
             let fullPath = (basePath as NSString).appendingPathComponent(requestedPath)
             var isDir: ObjCBool = false
             if FileManager.default.fileExists(atPath: fullPath, isDirectory: &isDir) {
                 if isDir.boolValue {
                     return originalDirectoryBrowser(requestedPath)(request)
                 } else if isFileSensitive(requestedPath, patterns: sensitiveFilePatterns) {
+                    log.warning("Files is a Sensitive one: \(requestedPath)")
                     return .forbidden
                 } else {
-                    print(originalDirectoryBrowser(requestedPath)(request))
                     return originalDirectoryBrowser(requestedPath)(request)
                 }
             } else {
+                log.error("File not found for path: \(requestedPath)")
                 return .notFound
             }
         }
@@ -134,7 +141,7 @@ struct Server: ParsableCommand {
         
         if debug {
             server.middleware.append { req in
-                print("\(req.method) request from \(req.address ?? "unknown address") to \(req.path)")
+                log.info("\(req.method) request from \(req.address ?? "unknown address") to \(req.path)")
                 return nil
             }
         }
@@ -142,9 +149,10 @@ struct Server: ParsableCommand {
         let semaphore = DispatchSemaphore(value: 0)
         do {
             try server.start(port, forceIPv4: true)
-            print("Server has started on port \(try server.port()). Try to connect now...")
-            print()
-            print("Others can do so by going to \"\(IP.local() ?? "localhost"):\(try server.port())\" in a browser")
+            if let port = try? server.port() {
+                log.info("Server has started on port \(port). Try to connect now...")
+                log.info("Others can do so by going to \"\(IP.local() ?? "localhost"):\(port)\" in a browser")
+            }
             semaphore.wait()
         } catch {
             print("Server start error: \(error)")
