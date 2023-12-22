@@ -12,8 +12,12 @@ let package = Package(
         .package(url: "https://github.com/Samasaur1/SwiftIP", from: "2.0.0"),
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "0.2.0"),
         .package(url: "https://github.com/httpswift/swifter", .exact("1.4.5")),
+        .package(url: "https://github.com/SwiftyBeaver/SwiftyBeaver.git", .upToNextMajor(from: "2.0.0")),
     ],
     targets: [
-        .target(name: "SimpleSwiftServer", dependencies: ["ArgumentParser", "SwiftIP", "Swifter"]),
+        .target(
+            name: "SimpleSwiftServer",
+            dependencies: ["ArgumentParser", "SwiftIP", "Swifter", "SwiftyBeaver"]
+        ),
     ]
 )
