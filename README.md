@@ -3,12 +3,20 @@
 A Swift executable equivalent to Python's SimpleHTTPServer — with extra features!
 
 ## Installing
-Make sure Xcode 10.2 or higher is installed first.
+Make sure Xcode 10.2 or higher is installed first (not necessary with Nix).
 
-### [Homebrew](https://brew.sh)
+### [Nix](https://nixos.org)
+
+This repository is a flake, so:
 
 ```sh
-$ brew install Samasaur1/core/simpleswiftserver
+nix profile install github:Samasaur1/SimpleSwiftServer
+```
+
+or add this to `environment.systemPackages`/`home.packages`, assuming your flake inputs are available as `inputs`:
+
+```nix
+inputs.SimpleSwiftServer.packages.${pkgs.system}.default
 ```
 
 ### [Mint](https://github.com/yonaskolb/mint)
@@ -32,6 +40,14 @@ $ git clone https://github.com/Samasaur1/SimpleSwiftServer.git
 $ cd SimpleSwiftServer
 $ swift run server
 ```
+
+### [Homebrew](https://brew.sh) \[Not Recommended\]
+
+```sh
+$ brew install Samasaur1/core/simpleswiftserver
+```
+
+I don't use Homebrew anymore, and it's kind of a pain to maintain a formula, so I probably won't update this package past v4.3.1. I *might* update it with critical bug fixes, but I make no promises.
 
 ## Usage
 
