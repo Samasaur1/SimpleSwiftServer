@@ -1,6 +1,6 @@
 import Swifter
 import Dispatch
-import Foundation.NSFileManager
+import Foundation
 import SwiftIP
 import ArgumentParser
 
@@ -70,7 +70,7 @@ struct Server: ParsableCommand {
                     return .notFound
                 }
                 r.params[f.key] = f.value.removingPercentEncoding
-                return shareFilesFromDirectory(path)(r)
+                return shareFilesFromDirectory(self.path)(r)
             }
             server["/"] = { _ in
                 return .movedTemporarily("web/")
