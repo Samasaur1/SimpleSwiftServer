@@ -1,10 +1,10 @@
-{ lib, stdenv, swift, swiftpm, swiftpm2nix, help2man, gnused, date ? null, ... }:
+{ lib, swiftPackages, swift, swiftpm, swiftpm2nix, help2man, gnused, date ? null, ... }:
 
 let
   generated = swiftpm2nix.helpers ./nix;
 in
 
-stdenv.mkDerivation {
+swiftPackages.stdenv.mkDerivation {
   pname = "SimpleSwiftServer";
   version = "4.4.0";
 
